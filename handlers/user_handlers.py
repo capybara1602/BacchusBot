@@ -30,7 +30,7 @@ class FSMFillForm(StatesGroup):
 # и отправлять ему приветственное сообщение
 @router.message(CommandStart())
 async def process_start_command(message: Message):
-    keyboard = create_inline_kb(1,'history', 'production', 'questions', 'tests', 'reset')
+    keyboard = create_inline_kb(1,'history', 'production', 'questions')
     text = LEXICON['/start']
     await message.answer(
         text=text,
@@ -49,7 +49,7 @@ async def process_help_command(message: Message):
 #Этот хэндлер будет срабатывать на нажатие инлайн-кнопки "Главное меню"
 @router.callback_query(F.data == 'menu')
 async def process_menu_press(callback: CallbackQuery):
-    keyboard = create_inline_kb(1,'history', 'production', 'questions', 'tests', 'reset')
+    keyboard = create_inline_kb(1,'history', 'production', 'questions')
     await callback.message.edit_text(
         text = 'Выбери интересующую категорию',
         reply_markup=keyboard
