@@ -104,6 +104,6 @@ def bd_wine(prc_from, prc_to, *args):
     
     url = "https://simplewine.ru/catalog/vino/" + filters(prc_from, prc_to, *args)
     get_page(url)
-    from_soup()  #добавить проверку на наличие товара по выбранной цене
+    from_soup()
 
 

@@ -171,9 +171,9 @@ async def process_price_to_sent(message: Message, state: FSMContext):
     await state.clear()
     await message.answer(text='Данные загружаются...')
 
-    args = data_to_wine['food'] #[await state.get_data['food']]
-    prc_from = str(data_to_wine['price_from']) #await state.get_data['price_from']
-    prc_to = str(data_to_wine['price_to'])  #await state.get_data['price_to']
+    args = data_to_wine['food']
+    prc_from = str(data_to_wine['price_from'])
+    prc_to = str(data_to_wine['price_to']) 
     bd_wine(prc_from, prc_to, args)
     connection = create_conection()
     bd_output = execute_read_query(connection, output_wine)
