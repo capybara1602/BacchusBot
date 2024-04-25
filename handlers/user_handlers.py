@@ -202,36 +202,4 @@ async def process_price_to_sent(message: Message, state: FSMContext):
 
 
 
-#Этот хэндлер будет срабатывать на нажатие инлайн-кнопки "Тесты по предоставленному материалу"
-@router.callback_query(F.data == 'tests')
-async def process_tests_press(callback: CallbackQuery):
-    await callback.message.edit_text(
-        text = 'тут будет тест',
-        reply_markup=create_pagination_keyboard(
-            'menu'
-        )
-    )
-#Этот хэндлер будет срабатывать на нажатие инлайн-кнопки "Сброс"
-@router.callback_query(F.data == 'reset')
-async def process_reset_press(callback: CallbackQuery):
-    await callback.message.edit_text(
-        text = 'тут будет сброс',
-        reply_markup=create_pagination_keyboard(
-            'menu'
-        )      
-    )
-
-
-
-
-
-
-
-# Этот хэндлер будет срабатывать на нажатие инлайн-кнопки "назад"
-# во время взаимодействия пользователя с сообщением-книгой
-#@router.callback_query(F.data == 'backward')
-#async def process_backward_press(callback: CallbackQuery):
-    #wait Form.previous()
-
-
 

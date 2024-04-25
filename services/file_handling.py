@@ -1,7 +1,3 @@
-#import sys
-#sys.path.append("C:/Users/marar/Рабочий стол/IT/python/тг_бот/код/lexicon")
-#from lexicon import LEXICON
-
 def prepare_book(inf: str) -> None:
 
     book: dict[str, str] = {}
