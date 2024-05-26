@@ -22,7 +22,8 @@ def from_soup():
 
     wine = []
     for link in zip(soup.find_all('div', id="snippet-buy-block"), soup.find_all('div', class_=["snippet-price__total", "snippet-price__total snippet-price__total-black"])):
-        W = (link[0].get('data-product-name'), link[1].get('content'), link[0].get('data-product-country'), link[0].get('data-product-wine-label'),link[0].get('data-product-type'), 'https://simplewine.ru' + link[0].get('data-product-href'))
+        W = (link[0].get('data-product-name'), link[1].get('content'), link[0].get('data-product-country'), link[0].get('data-product-wine-label'),link[0].get('data-product-type'),
+              'https://simplewine.ru' + link[0].get('data-product-href'))
         if W not in wine:
             wine.append(W)
 
@@ -44,8 +45,6 @@ def from_soup():
     except:
         pass
   
-   
-
 
 
 def filters(prc_from='', prc_to='', *args):
@@ -94,7 +93,6 @@ def filters(prc_from='', prc_to='', *args):
         price = 'main'+ price_from + price_to + '/'
     else:
         price = ''
-
 
     return 'filter/' + food + '/' + price
 

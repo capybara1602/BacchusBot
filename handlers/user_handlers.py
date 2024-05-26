@@ -25,9 +25,7 @@ class FSMFillForm(StatesGroup):
     fill_price_from = State()
     fill_price_to = State()
 
-# Этот хэндлер будет срабатывать на команду "/start" -
-# добавлять пользователя в базу данных, если его там еще не было
-# и отправлять ему приветственное сообщение
+# Этот хэндлер будет срабатывать на команду "/start"
 @router.message(CommandStart())
 async def process_start_command(message: Message):
     keyboard = create_inline_kb(1,'history', 'production', 'questions')
@@ -37,13 +35,6 @@ async def process_start_command(message: Message):
         reply_markup=keyboard
     )
     
-
-
-# Этот хэндлер будет срабатывать на команду "/help"
-# и отправлять пользователю сообщение со списком доступных команд в боте
-@router.message(Command(commands='help'))
-async def process_help_command(message: Message):
-    await message.answer(LEXICON[message.text])
 
 
 #Этот хэндлер будет срабатывать на нажатие инлайн-кнопки "Главное меню"
@@ -69,7 +60,8 @@ async def process_history_press(callback: CallbackQuery):
 #Этот хэндлер будет срабатывать на нажатие инлайн-кнопки "Процесс производства вина"
 @router.callback_query(F.data == 'production')
 async def process_production_press(callback: CallbackQuery):
-    keyboard = create_inline_kb(3,'white wine', 'red wine', 'rose wine', 'sparkling wine', 'fortified wine', 'menu')
+    keyboard = create_inline_kb(3,'white wine', 'red wine', 'rose wine', 'sparkling wine',
+                                 'fortified wine', 'menu')
     text = book['Виды вина']
     await callback.message.edit_text(
         text = text,
@@ -133,10 +125,11 @@ async def process_fortified_wine_press(callback: CallbackQuery):
 
 
 
-#Этот хэндлер будет срабатывать на нажатие инлайн-кнопки "Ответы на вопросы"
+#Этот хэндлер будет срабатывать на нажатие инлайн-кнопки "Помощь в выборе вина"
 @router.callback_query(StateFilter(default_state), F.data == 'questions')
 async def process_questions_command(callback: CallbackQuery, state: FSMContext):
-    markup = create_inline_kb(2, 'Говядина', 'Рыба', 'Выдержанный сыр', 'Морепродукты', 'Утка', 'Сыр', 'Закуски, салаты и антипасто', 'Курица', 'Свинина', 'Ягненок', 'Паста', 'Мягкий сыр', 'Овощи', 'Азиатская кухня', 'Десерты и выпечка', 'Кролик', 'Оленина', 'Ризотто', 'Грибы', 'Фрукты и ягоды', 'Хамон', 'Салями', 'Японская кухня', 'Шоколад', 'Бургер')
+    markup = create_inline_kb(2, 'Говядина', 'Рыба', 'Выдержанный сыр', 'Морепродукты', 'Утка', 'Сыр', 'Закуски, салаты и антипасто', 'Курица', 'Свинина', 'Ягненок', 'Паста', 'Мягкий сыр', 'Овощи',
+                               'Азиатская кухня', 'Десерты и выпечка', 'Кролик', 'Оленина', 'Ризотто', 'Грибы', 'Фрукты и ягоды', 'Хамон', 'Салями', 'Японская кухня', 'Шоколад', 'Бургер')
     text = LEXICON['Помощь в выборе вина']
     await callback.message.edit_text(
         text = text,
@@ -145,7 +138,9 @@ async def process_questions_command(callback: CallbackQuery, state: FSMContext):
     await state.set_state(FSMFillForm.fill_food)
 
 
-@router.callback_query(StateFilter(FSMFillForm.fill_food), F.data.in_(['Говядина', 'Рыба', 'Выдержанный сыр', 'Морепродукты', 'Утка', 'Сыр', 'Закуски, салаты и антипасто', 'Курица', 'Свинина', 'Ягненок', 'Паста', 'Мягкий сыр', 'Овощи', 'Азиатская кухня', 'Десерты и выпечка', 'Кролик', 'Оленина', 'Ризотто', 'Грибы', 'Фрукты и ягоды', 'Хамон', 'Салями', 'Японская кухня', 'Шоколад', 'Бургер']))
+@router.callback_query(StateFilter(FSMFillForm.fill_food), F.data.in_(['Говядина', 'Рыба', 'Выдержанный сыр', 'Морепродукты', 'Утка', 'Сыр', 'Закуски, салаты и антипасто', 'Курица', 'Свинина',
+                                                                        'Ягненок', 'Паста', 'Мягкий сыр', 'Овощи', 'Азиатская кухня', 'Десерты и выпечка', 'Кролик', 'Оленина', 'Ризотто', 'Грибы',
+                                                                        'Фрукты и ягоды', 'Хамон', 'Салями', 'Японская кухня', 'Шоколад', 'Бургер']))
 async def process_questions_press(callback: CallbackQuery, state: FSMContext):
     await state.update_data(food=callback.data)
     await callback.message.delete()

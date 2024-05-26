@@ -1,0 +1,7 @@
+[05.21.2024 21:53:00 | CRITICAL]: Exception 'KeyboardInterrupt': . File: 'c:\Users\marar\Рабочий стол\IT\python\тг_бот\код\main.py'. Line: 36
+[05.21.2024 21:54:21 | CRITICAL]: Exception 'KeyboardInterrupt': . File: 'c:\Users\marar\Рабочий стол\IT\python\тг_бот\код\main.py'. Line: 36
+[05.22.2024 01:22:22 | DEBUG]: Starting new HTTPS connection (1): simplewine.ru:443
+[05.22.2024 01:22:25 | DEBUG]: https://simplewine.ru:443 "GET /catalog/vino/filter/food-utka/main-from-600-to-2000/ HTTP/1.1" 200 None
+[05.22.2024 01:30:08 | DEBUG]: Starting new HTTPS connection (1): simplewine.ru:443
+[05.22.2024 01:30:09 | DEBUG]: https://simplewine.ru:443 "GET /catalog/vino/filter/food-vyderzhannyy_syr/main-from-5-to-5/ HTTP/1.1" 404 None
+[05.22.2024 01:35:15 | CRITICAL]: Exception 'KeyboardInterrupt': . File: 'c:\Users\marar\Рабочий стол\IT\python\тг_бот\код\main.py'. Line: 31
